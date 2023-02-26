@@ -26,15 +26,32 @@
         </option>
       </select>
     </div>
-    <div>
-      
+    <!-- <div >
+      <p>{{ searchResult }}</p>
+    </div> -->
+    <div v-if="true">
+      <countries/>
     </div>
-    <countries/>
+    <div v-else>
+      <div v-for="country in countries" :key="country.id" class="country-card w-full md:w-[31%] lg:w-[23%]">
+        <router-link :to="{ name: 'countryInfo' , params: {id: country.name.common }}">
+            <div class=" country-flag rounded-t-md relative h-1/2 w-full" >
+                <img class="w-full h-full block rounded-t-md" :src="country.flags.png" alt="">
+            </div>
+        </router-link>
+        <div class="card-text py-8">
+            <h2>{{ country.name.common }}</h2>
+            <p><span>Population:</span> {{ country.population }}</p>
+            <p><span>Region:</span> {{ country.region }}</p>
+            <p><span>Capital:</span> {{ country.capital}}</p>
+        </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import countries from "../components/countries.vue"
 export default {
     components: {countries},
@@ -46,27 +63,33 @@ export default {
           { name: "Item 3", region: "West" },
       ]);
       const searchTerm = ref('')
+      const searchedCountries = ref([])
       const url = ref("https://restcountries.com/v3.1/name/" + searchTerm.value)
 
 
-      // const getSearchResult = async () =>{
-      //   try {
-      //     let res = await fetch(url)
-      //     const data = res.json
 
-      //     console.log(res);
 
-      //   } catch (err) {
+      const searchResult =  computed( async() =>{
+        try {
+          let res = await fetch(url.value)
+          const data = await res.json
+
+          console.log(data);
+
+        } catch (err) {
           
-      //   }
-      // }
+        }
+
+        return data
+
+      })
       
       // getSearchResult()
 
 
 
 
-    return { regions, selectedRegion, searchTerm, };
+    return { regions, selectedRegion, searchTerm, searchedCountries, searchResult};
   },
 };
 </script>
