@@ -11,6 +11,7 @@
         <input
           class="w-full border py-2 px-2"
           type="search"
+          v-model="searchTerm"
           placeholder="Search for a country..."
         />
       </div>
@@ -25,6 +26,9 @@
         </option>
       </select>
     </div>
+    <div>
+      
+    </div>
     <countries/>
   </div>
 </template>
@@ -35,14 +39,34 @@ import countries from "../components/countries.vue"
 export default {
     components: {countries},
     setup() {
-        const selectedRegion = ref('')
-        const regions = ref([
-            { name: "Item 1", region: "West" },
-            { name: "Item 2", region: "East" },
-            { name: "Item 3", region: "West" },
-        ]);
+      const selectedRegion = ref('')
+      const regions = ref([
+          { name: "Item 1", region: "West" },
+          { name: "Item 2", region: "East" },
+          { name: "Item 3", region: "West" },
+      ]);
+      const searchTerm = ref('')
+      const url = ref("https://restcountries.com/v3.1/name/" + searchTerm.value)
 
-    return { regions, selectedRegion };
+
+      // const getSearchResult = async () =>{
+      //   try {
+      //     let res = await fetch(url)
+      //     const data = res.json
+
+      //     console.log(res);
+
+      //   } catch (err) {
+          
+      //   }
+      // }
+      
+      // getSearchResult()
+
+
+
+
+    return { regions, selectedRegion, searchTerm, };
   },
 };
 </script>

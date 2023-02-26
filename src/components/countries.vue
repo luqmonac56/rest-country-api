@@ -1,14 +1,18 @@
 <template>
     <div class=" countries mt-8 flex flex-wrap gap-y-8 rounded-t-md justify-between px-6 ">
+        <!-- <router-link :to="{ path: 'home', params: { userId: 123 }}"></router-link> -->
         <div v-for="country in countries" :key="country.id" class="country-card w-full md:w-[31%] lg:w-[23%]">
-            <div class=" country-flag rounded-t-md relative h-1/2 w-full" >
-                <img class="w-full h-full block rounded-t-md" :src="country.flag" alt="">
-            </div>
+            <router-link :to="{ name: 'countryInfo' , params: {id: country.name.common }}">
+                <div class=" country-flag rounded-t-md relative h-1/2 w-full" >
+                    <img class="w-full h-full block rounded-t-md" :src="country.flags.png" alt="">
+                </div>
+            </router-link>
             <div class="card-text py-8">
-                <h2>{{ country.name }}</h2>
+                <h2>{{ country.name.common }}</h2>
                 <p><span>Population:</span> {{ country.population }}</p>
                 <p><span>Region:</span> {{ country.region }}</p>
-                <p><span>Capital:</span> {{ country.capital }}</p>
+                <p><span>Capital:</span> {{ country.capital}}</p>
+                <!-- <p><span>id:</span> {{ country.id }}</p> -->
             </div>
         </div>
     </div>
@@ -23,11 +27,8 @@ export default {
 
         const countries = ref([]) 
         const error = ref(null)
-        const url = ref("https://restcountries.com/v2/all")
+        const url = ref("https://restcountries.com/v3.1/all")
 
-        // const res = axios.get(url.value)
-        
-        // console.log(res);
         const getCountries = async () =>{
             try {
 
@@ -73,7 +74,7 @@ img{
 
 .card-text h2{
     margin: .5rem 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 .card-text p{
