@@ -26,7 +26,7 @@
                     </div>
                     <div class="flex gap-2 mt-8">
                         <h3  class="font-bold">Border Countries: </h3>
-                        <div class="flex gap-1">
+                        <div class="flex gap-1 flex-wrap">
                             <ul  v-for="border in item.borders" :key="border">
                                 <li class="rounded-lg shadow-3xl bg-slate-200 px-3 ">{{ border }}</li>
                             </ul>
@@ -108,6 +108,6 @@ export default {
 }
 
 img{
-    box-shadow: 0px 0px 12px 2px rgba(5, 5, 5, 0.479);
+    box-shadow: 0px 0px 10px 2px rgba(5, 5, 5, 0.479);
 }
 </style>

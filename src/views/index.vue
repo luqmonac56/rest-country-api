@@ -12,6 +12,7 @@
           class="w-full border py-2 px-2"
           type="search"
           v-model="searchTerm"
+          @keypress.enter="getSearchResult"
           placeholder="Search for a country..."
         />
       </div>
@@ -29,11 +30,11 @@
     <!-- <div >
       <p>{{ searchResult }}</p>
     </div> -->
-    <div v-if="true">
+    <div v-if="!searchTerm">
       <countries/>
     </div>
-    <div v-else>
-      <div v-for="country in countries" :key="country.id" class="country-card w-full md:w-[31%] lg:w-[23%]">
+    <div v-else class="px-8 mt-8">
+      <div v-for="country in searchedCountries" :key="country.name.common" class="country-card mb-8 w-full md:w-[31%] lg:w-[23%]">
         <router-link :to="{ name: 'countryInfo' , params: {id: country.name.common }}">
             <div class=" country-flag rounded-t-md relative h-1/2 w-full" >
                 <img class="w-full h-full block rounded-t-md" :src="country.flags.png" alt="">
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, watch} from "vue";
 import countries from "../components/countries.vue"
 export default {
     components: {countries},
@@ -64,32 +65,38 @@ export default {
       ]);
       const searchTerm = ref('')
       const searchedCountries = ref([])
-      const url = ref("https://restcountries.com/v3.1/name/" + searchTerm.value)
 
 
+      watch(searchTerm , ()=>{
+        if (!searchTerm.value) {
+          searchedCountries.value = []
+        }
 
+      })
+      
+      const getSearchResult = async()=>{
+        const url = ref('https://restcountries.com/v3.1/name/' + searchTerm.value)
 
-      const searchResult =  computed( async() =>{
         try {
           let res = await fetch(url.value)
-          const data = await res.json
+          const data = await res.json()
 
-          console.log(data);
+          searchedCountries.value = data
+          console.log(searchedCountries.value);
 
         } catch (err) {
           
         }
 
-        return data
 
-      })
+      }
+
       
-      // getSearchResult()
 
 
 
 
-    return { regions, selectedRegion, searchTerm, searchedCountries, searchResult};
+    return { regions, selectedRegion, searchTerm, searchedCountries, getSearchResult};
   },
 };
 </script>
