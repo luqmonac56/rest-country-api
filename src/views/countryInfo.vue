@@ -1,5 +1,5 @@
 <template>
-    <div class=" h-screen flex flex-col">
+    <div class=" h-screen flex flex-col gap-8">
         <!-- <router-link to="/">Back</router-link> -->
         <router-link class="btn w-fit px-8 py-2 mt-8 ml-8 text-white" :to="{ name: 'home'}">Back</router-link>
 
