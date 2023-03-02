@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <nav class="p-4">
-      <ul class="flex justify-between">
-        <li>Where in the world?</li>
-        <li>Dark Mode</li>
-      </ul>
-    </nav>
+  <div >
+    <NavBar/>
     <div
       class="px-8 search-div flex gap-6 md:gap-0 md:justify-between flex-col md:flex-row mt-8"
     >
@@ -34,6 +29,7 @@
         </option>
       </select>
     </div>
+
 
     <div v-if="selectedRegion">
       <FilteredCountries :selectedRegion="selectedRegion"/>
@@ -79,8 +75,9 @@
 import { ref, watch } from "vue";
 import countries from "../components/countries.vue";
 import FilteredCountries from "../components/filteredCountries.vue";
+import NavBar from "../components/navBar.vue";
 export default {
-  components: { countries, FilteredCountries },
+  components: { countries, FilteredCountries, NavBar },
   setup() {
     const selectedRegion = ref("");
     const regions = ref([
@@ -92,6 +89,12 @@ export default {
     ]);
     const searchTerm = ref("");
     const searchedCountries = ref([]);
+    const darkMode = ref(false)
+
+
+    const darkmodeToggle = ()=>{
+
+    }
 
     watch(searchTerm, () => {
       if (!searchTerm.value) {
@@ -125,12 +128,15 @@ export default {
       searchTerm,
       searchedCountries,
       getSearchResult,
+      darkMode,
+      darkmodeToggle,
     };
   },
 };
 </script>
 
 <style scoped>
+
 nav {
   box-shadow: 0px 1px 10px 1px rgba(83, 81, 81, 0.12);
 }

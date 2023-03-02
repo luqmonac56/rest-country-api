@@ -20,6 +20,7 @@
 
 <script>
 import { ref } from 'vue'
+// @import "@/assets/global:scss";
 
 
 export default {
@@ -63,6 +64,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.card-text{
+    padding-left: 1.5rem;
+    border-radius:  0  0 .5rem .5rem;
+    //color:  var(--text-primary-color);
+
+  }
+
 
 </style>
