@@ -10,8 +10,8 @@
                 <h2>{{ country.name.common }}</h2>
                 <p><span>Population:</span> {{ country.population }}</p>
                 <p><span>Region:</span> {{ country.region }}</p>
-                <p><span>Capital:</span> {{ country.capital}}</p>
-                <p><span>id:</span> {{ country.id }}</p>
+                <p><span>Capital:</span> {{ country.capital[0]}}</p>
+                <!-- <p><span>id:</span> {{ country.id }}</p> -->
             </div>
         </div>
     </div>

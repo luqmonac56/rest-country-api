@@ -1,6 +1,6 @@
 <template>
   <div >
-    <NavBar/>
+    <!-- <NavBar/> -->
     <div
       class="px-8 search-div flex gap-6 md:gap-0 md:justify-between flex-col md:flex-row mt-8"
     >
@@ -147,11 +147,13 @@ nav {
   border-radius: 5px;
   outline: none;
   border: none;
+  background: var(--element-color);
 }
 
 input {
   outline: none;
   border: none;
   border-radius: 5px;
+  background: var(--element-color);
 }
 </style>

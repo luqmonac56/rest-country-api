@@ -1,44 +1,10 @@
-<!-- <template>
-  <div>
-    <button :class="{'dark-theme': darkTheme}">Dark Mode</button>
-  </div>
-</template>
-
-<script>
-import {ref} from "vue"
-  export default {
-    setup() {
-      const darkTheme = ref(true)
-
-      return{darkTheme, }
-    }
-  }
-</script>
-
-<style lang="scss" scoped>
-
-button{
-color: var(--text-primary-color);
-}
-
-</style> -->
-
-
 <template>
   <div>
-    <div class="main-center">
-      <input
-        @change="toggleTheme"
-        id="modeToggle"
-        type="checkbox"
-        class="switch-checkbox"
-      />
-      <label for="modeToggle" class="switch-label ">
-        <div
-          class="switch-toggle"
-          :class="{ 'switch-toggle-checked': theme.appMode === 'dark-theme' }"
-        ></div>
-      </label>
+    <div class="">
+      <p @click="toggleTheme" class=" cursor-pointer">
+        <span v-if="theme.appMode === 'dark-theme'">Light Mode</span>
+        <span v-else>Dark Mode</span>
+      </p>
     </div>
   </div>
 </template>

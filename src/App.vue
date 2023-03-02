@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import NavBar from './components/navBar.vue';
 import { useThemeStore } from  './stores/themeStore';
 
 const theme = useThemeStore()
@@ -8,6 +9,7 @@ const theme = useThemeStore()
 
 <template>
   <div class=""  >
+    <NavBar/>
     <RouterView />
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <nav class="p-4">
+    <div class=" px-8 py-4">
+        <nav >
             <ul class="flex justify-between">
-              <li>Where in the world?</li>
+              <li class=" font-bold">Where in the world?</li>
               <li> <DarkmodeButton/></li>
             </ul>
           </nav>
